@@ -95,6 +95,7 @@
     justify-content: space-between;
     align-items: center;
     transition: all 0.3s;
+    background-color: #fff;
   }
   
   .org-card:hover {
