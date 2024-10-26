@@ -193,6 +193,7 @@ const State = () => {
     "Therapy",
     "Primary Care"
   ];
+  
 
   // Handle category change
   const handleCategoryChange = (e) => {

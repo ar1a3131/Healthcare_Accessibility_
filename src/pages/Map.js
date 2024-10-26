@@ -30,10 +30,10 @@ const Map = () => {
     <div className={`map-container ${isTransitioning ? 'fade-zoom' : ''}`}>
       <div className="header-container">
         <h1>Welcome to the Healthcare Data Directory</h1>
-        <p>Click on a state to see more information on healthcare providers in that state 
+      </div>
+      <p>Click on a state to see more information on healthcare providers in that state 
           and travel/accessibility data for you to get to a provider.
         </p>
-      </div>
 
       <ComposableMap 
         projection="geoAlbersUsa" 
