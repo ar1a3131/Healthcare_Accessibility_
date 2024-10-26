@@ -1,0 +1,98 @@
+/* App.css */
+
+.fade-enter {
+  opacity: 0;
+  transform: scale(0.9);
+  position: absolute;
+  width: 100%;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 500ms, transform 500ms;
+}
+
+.fade-exit {
+  opacity: 1;
+  transform: scale(1);
+  position: absolute;
+  width: 100%;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 500ms, transform 500ms;
+}
+
+/* map stuff */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #e5f2ff;  /* Light blue-gray background for all pages */
+  font-family: 'Roboto', sans-serif;
+}
+
+.map-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+.map-wrapper {
+  width: 100%;
+  height: 80vh;  /* Makes the map take up 80% of the viewport height */
+  max-width: 1000px;  /* Optional: Set a max width */
+}
+
+h1, h2, p {
+  margin: 10px;
+}
+/* end of map stuff */
+
+
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: rgb(255, 255, 255);
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
