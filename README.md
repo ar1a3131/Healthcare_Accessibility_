@@ -1,18 +1,13 @@
-# Getting Started with Create React App
+# System Design and Justification for NJ Transit and Provider Directory Software
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Authors: Allen Mena, Arianna Azizi, Samuel Habib, James Lee 
 
-## Available Scripts
+### Abstract
 
-In the project directory, you can run:
+    In New Jersey (and the greater United States), the issue of accessible healthcare provider data that is relevant to patients in these care systems is prevalent, and requires a solution that users can always access in order to obtain information pertinent to receiving care in their area. This currently does not exist on a state or national level, and the provider data currently available on the internet is unstructured at best, and at-worst, unavailable without deep searching into provider coalitions and other organizations that try to represent what data they can find into their own directories. However, because this data exists in smaller directories, the goal is to add additional pertinent information that can be accessed by calculations made up of a combination of provider data, and NJ transit route information. This combination of data can lead to new insights as to which patients have the most difficult time getting to providers, and a calculated justification as to why. 
+    
+    For this application, Python, JavaScript, MongoDB, React, and AWS were all utilized to create a live platform that will be deployed locally using AWS as the event handler for user address submissions to find which providers are closest to them and how difficult it is to get to said providers. Through this process, calculations were able to be made for the closest provider, the closest bus stop to get to the provider, walkability index, and travel difficulty index, and this information was given to the user.
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
 ### `npm test`
 
