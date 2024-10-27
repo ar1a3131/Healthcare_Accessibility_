@@ -45,7 +45,7 @@ def calculate_difficulty_index(walk_score, total_distance, bus_stop_distance,
                         w3 * normalized_bus_stop_distance)
 
     return round(min(difficulty_index, 10), 2)
-```
+
 ## Results
 
     We were able to create a simple application that gives users relevant information that pertains to what is in their area by address entry and conversion. 
