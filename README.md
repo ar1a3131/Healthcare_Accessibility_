@@ -9,57 +9,47 @@
     For this application, Python, JavaScript, MongoDB, React, and AWS were all utilized to create a live platform that will be deployed locally using AWS as the event handler for user address submissions to find which providers are closest to them and how difficult it is to get to said providers. Through this process, calculations were able to be made for the closest provider, the closest bus stop to get to the provider, walkability index, and travel difficulty index, and this information was given to the user.
 
 
-### `npm test`
+### Introduction
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This application aims to solve two problems, and set a path for the application to be scaled out to the rest of New Jersey, and later on a national level. The first issue that this application aims to solve is the lack of structured data on a state level for a user to navigate through to find the provider and type of care they need. This problem is relevant because the arduousness of searching for a healthcare provider that matches your insurance and is close to you is significant, and can cost users time, or even a potential visit if they find the process too difficult to understand and give up their search prematurely.
+ The secondary problem that the application will solve through the distance and difficulty index calculations is how difficult it is for a patient to get to a provider using NJ transit. This question is relevant to New Jersey patients who do not have access to a car or other alternative transportation options outside of public transit, although future functionality could be added that includes distance by car and a comparison of commute types (additionally, the calculation to decide difficulty could be influenced by a figure like time to travel on public transportation vs. time to travel by car).
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Methodology
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+This section describes the approach taken to try and develop a provider and transit information application. The language stack for this project was Python for backend functions and calculations, and Javascript for front-end design and UI development, with React as the framework for the front-end. The platforms utilized were AWS lambda for Python script event handling and live hosting, MongoDB for database storage and information retrieval, Geoapify for hard coding longitude and latitude coordinates for providers and bus routes, OpenStreetMap API for dynamic coordinates based on user address entry,  and React for local deployment of the project for testing. If there were less time constraints due to this being developed during a Hackathon, additional functionality could be added so the website exists as a URL that users can visit via Amplify.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**PUT IMAGE HERE**
 
-### `npm run eject`
+First, since there were over 30,000 bus route locations, a subsection of New Jersey was taken, and a focus was applied to three major cities (Belleville, Neptune, and Morristown). This narrowed results down significantly, and allowed for free API calls to be made and research to be done on those areas. From there, those bus routes and their distance to the user are determined by the address that has been translated by OpenStreetMaps into a coordinate, which is compared to find the closest provider, and closest bus stop. Finally, the user is given back the following information: the name of provider, provider background information, address to provider, distance from user to provider in miles, distance to the closest bus stop, cross street for the closest bus stop, a URL to the provider’s site, a difficulty index that rates how difficult it is to get to a provider on a scale of 0-10, and an image key with a logo of the provider (due to time constraints this was not implemented and a string placeholder is present instead).
+In order to construct a difficulty index, different factors were weighted into what makes it difficult for a user to travel to a provider. These factors include distance from provider to user in miles, distance to the closest bus stop, and walkability level.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Difficulty Index
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+def calculate_difficulty_index(walk_score, total_distance, bus_stop_distance, max_distance=10, max_bus_stop_distance=2, w1=0.5, w2=0.3, w3=0.2):
+    # Normalize walk score (100 - walk_score) to a 0-10 scale
+    normalized_walk_score = (100 - walk_score) / 10
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Normalize total distance to a 0-10 scale (based on   max_distance)
+    normalized_total_distance = min(total_distance / max_distance * 10, 10)
+    # Normalize bus stop distance to a 0-10 scale (based on max_bus_stop_distance)
+    normalized_bus_stop_distance = min(bus_stop_distance / max_bus_stop_distance * 10, 10)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    # Calculate difficulty index, ensuring it's between 0 and 10
+    difficulty_index = (w1 * normalized_walk_score + 
+                        w2 * normalized_total_distance + 
+                        w3 * normalized_bus_stop_distance)
 
-## Learn More
+    return round(min(difficulty_index, 10), 2) 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Results
 
-### Code Splitting
+We were able to create a simple application that gives users relevant information that pertains to what is in their area by address entry and conversion. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Limitations and Future Functionality
 
-### Analyzing the Bundle Size
+Because of time constraints, many features that could have been implemented and expanded upon were tabled for later usage if the application proves to be useful for NJ Transit or other organizations that see value in the project. Some other relevant calculations that could have been considered in both what to pass to the user and what to calculate in the difficulty index were traffic at the time of user entry, links to appointment sections of provider sites, transportation costs (and rail systems receiving coordinates and being added to the system, we only worked with bus data for this project), and what insurance the provider takes. This information is also unstructured but has the potential to be structured and placed into a directory for New Jersey, and later other state’s users, to access.
+Another limitation was the inability to develop a literature review that addresses barriers to users using urban or suburban public transportation due to time constraints. If this research was implemented, the difficulty index could potentially be more accurate and have better weighted values than what the team decided at the time of development. Addressing these literature gaps would be the next step in developing a more comprehensive and useful application for public usage. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
