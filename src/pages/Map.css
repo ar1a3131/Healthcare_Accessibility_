@@ -33,10 +33,11 @@ html, body {
     font-weight: 700;
     color: rgb(255, 255, 255) !important;
     margin: 0;
+    margin-bottom: 40px;
 }
 
 .description {
-    margin-top: 40px 0;
+    margin-top: 80px 0;
     font-size: 1.2rem;
     text-align: center;
     color: rgb(44, 46, 52) !important;
@@ -87,4 +88,66 @@ html, body {
 }
 
 
+.react-tooltip {
+    background-color: rgba(0, 0, 0, 0.75) !important; /* Dark background for better visibility */
+    color: #fff !important; /* White text */
+    border-radius: 5px !important;
+    padding: 5px 10px !important;
+    font-size: 0.9rem !important;
+    opacity: 0.9 !important;
+  }
+
+  /* Tooltip styling */
+.state-tooltip {
+    position: fixed;
+    padding: 8px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    pointer-events: none;
+    z-index: 10;
+  }
   
+  /* GitHub link styling */
+  .github_box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #ffffff;
+    width: 250px;
+    font-family: 'Helvetica', sans-serif;
+}
+
+.github-info {
+    font-size: 18px;
+    font-weight: 300;
+    margin: 0 0 10px 0; /* Add margin at the bottom */
+    color: black;
+}
+
+.logo-links {
+    display: flex;
+    gap: 5px; /* Space between the logos */
+}
+
+.github-link, .hackru-link {
+    display: flex;
+    align-items: center;
+}
+
+.github-logo, .hackru-logo {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.2s;
+}
+
+.github-logo:hover, .hackru-logo:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}

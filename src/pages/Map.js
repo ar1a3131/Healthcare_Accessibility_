@@ -1,16 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  ComposableMap,
-  Geographies,
-  Geography,
-} from 'react-simple-maps';
+import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
+import { Tooltip } from 'react-tooltip'; // Updated import
+import hackruLogo from './hackru.png';
 import './Map.css';
 
+
+
+// Add this GitHub logo URL
+const githubLogo = 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png';
 const geoUrl = 'https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json';
 
 const Map = () => {
   const navigate = useNavigate();
+  const [tooltipContent, setTooltipContent] = useState(''); // State for tooltip content
 
   const handleStateClick = (geo) => {
     const stateName = geo.properties.name;
@@ -21,7 +24,7 @@ const Map = () => {
     <div className="map-container">
       {/* Header Bar */}
       <div className="header-bar">
-        <h1 className="header-title">Welcome to the Healthcare Data Directory</h1>
+        <h1 className="header-title">Welcome to the National Healthcare Data Directory</h1>
       </div>
 
       {/* Description Text */}
@@ -36,6 +39,7 @@ const Map = () => {
           width={1000}
           height={600}
           projectionConfig={{ scale: 800, center: [-74, 40] }}
+          data-tip="" // Tooltip trigger
         >
           <Geographies geography={geoUrl}>
             {({ geographies }) =>
@@ -43,34 +47,70 @@ const Map = () => {
                 <Geography
                   key={geo.rsmKey}
                   geography={geo}
+                  onMouseEnter={() => {
+                    const { name } = geo.properties;
+                    setTooltipContent(name); // Set tooltip content
+                  }}
+                  onMouseLeave={() => {
+                    setTooltipContent(''); // Clear tooltip content
+                  }}
                   onClick={() => handleStateClick(geo)}
                   style={{
                     default: {
-                      fill: geo.properties.name === 'New Jersey' ? '#535364' : '#d4e3f8', // Light gray fill for states
-                      outline: 'white', // White border for the states
-                      stroke: '#ffffff', // White stroke color
-                      strokeWidth: 1, // Border width
+                      fill: geo.properties.name === 'New Jersey' ? '#4485df' : '#B4B4B7',
+                      outline: 'white',
+                      stroke: 'white', // Highlight borders
+                      strokeWidth: 0.5,
                       transition: 'fill 0.3s',
                     },
                     hover: {
-                      fill: '#4485df', // Dark blue on hover
-                      stroke: '#ffffff', // White border on hover
-                      strokeWidth: 1, // Border width on hover
+                      fill: '#d4e3f8',
+                      outline: 'white',
                       cursor: 'pointer',
                     },
                     pressed: {
-                      fill: '#166ded', // Slightly darker blue on press
-                      stroke: '#ffffff', // White border on press
-                      strokeWidth: 1, // Border width on press
+                      fill: '#166ded',
+                      outline: 'white',
                     },
                   }}
                 />
-
               ))
             }
           </Geographies>
         </ComposableMap>
+        {/* Tooltip component */}
+        {tooltipContent && (
+          <Tooltip className="state-tooltip" content={tooltipContent} />
+        )}
       </div>
+      <div className="github_box">
+      <p className="github-info">
+        For now, we have highlighted the state of New Jersey, as we have initialized the project by using datasets from NJTransit for HackRU.
+      </p>
+      <div className="logo-links">
+        {/* GitHub Link */}
+        <a 
+          href="https://github.com/ar1a3131/Healthcare_Accessibility_/tree/master"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="github-link"
+        >
+          <img src={githubLogo} alt="GitHub Logo" className="github-logo" />
+        </a>
+        {/* HackRU Link */}
+        <a 
+          href="https://www.hackru.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hackru-link"
+        >
+          <img src={hackruLogo} alt="HackRU Logo" className="hackru-logo" />
+        </a>
+      </div>
+    </div>
+
+
+
     </div>
   );
 };

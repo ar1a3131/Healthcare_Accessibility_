@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useSelectedState } from './SelectedStateContext';
 import './Address.css';
+import './../App.css';
 
 const Address = () => {
   const { stateName } = useParams(); // Get state name from URL params

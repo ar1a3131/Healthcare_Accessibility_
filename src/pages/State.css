@@ -230,7 +230,7 @@ a:hover {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: background-color 0.2s;
   }
   
   .back-button:hover {
