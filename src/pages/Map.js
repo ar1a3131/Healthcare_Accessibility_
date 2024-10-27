@@ -1,5 +1,4 @@
-// Map.js
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   ComposableMap,
@@ -11,69 +10,70 @@ import './Map.css';
 const geoUrl = 'https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json';
 
 const Map = () => {
-  const [isTransitioning, setIsTransitioning] = useState(false);
   const navigate = useNavigate();
 
   const handleStateClick = (geo) => {
     const stateName = geo.properties.name;
-
-    // Set the transition state and start the fade/zoom effect
-    setIsTransitioning(true);
-
-    // Delay the navigation to allow the transition effect to complete
-    setTimeout(() => {
-      navigate(`/address/${stateName}`);
-    }, 500);  // Adjust this duration to match your CSS transition time
+    navigate(`/address/${stateName}`);
   };
 
   return (
-    <div className={`map-container ${isTransitioning ? 'fade-zoom' : ''}`}>
-      <div className="header-container">
-        <h1>Welcome to the Healthcare Data Directory</h1>
+    <div className="map-container">
+      {/* Header Bar */}
+      <div className="header-bar">
+        <h1 className="header-title">Welcome to the Healthcare Data Directory</h1>
       </div>
-      <p>Click on a state to see more information on healthcare providers in that state 
-          and travel/accessibility data for you to get to a provider.
-        </p>
 
-      <ComposableMap 
-        projection="geoAlbersUsa" 
-        width={1000} 
-        height={600} 
-        projectionConfig={{ scale: 1100 }}  // Reduced scale for zoom out
-      >
-        <Geographies geography={geoUrl}>
-          {({ geographies }) =>
-            geographies.map((geo) => {
-              const isNewJersey = geo.properties.name === "New Jersey";
-              return (
+      {/* Description Text */}
+      <p className="description">
+        Click on a state to see more information on healthcare providers in that state and travel/accessibility data for you to get to a provider.
+      </p>
+
+      {/* Map Container */}
+      <div className="composable-map-container">
+        <ComposableMap
+          projection="geoAlbersUsa"
+          width={1000}
+          height={600}
+          projectionConfig={{ scale: 800, center: [-74, 40] }}
+        >
+          <Geographies geography={geoUrl}>
+            {({ geographies }) =>
+              geographies.map((geo) => (
                 <Geography
                   key={geo.rsmKey}
                   geography={geo}
                   onClick={() => handleStateClick(geo)}
                   style={{
                     default: {
-                      fill: isNewJersey ? '#031ac0' : '#8b99ff',  // Highlight NJ
-                      outline: 'none',
+                      fill: geo.properties.name === 'New Jersey' ? '#535364' : '#d4e3f8', // Light gray fill for states
+                      outline: 'white', // White border for the states
+                      stroke: '#ffffff', // White stroke color
+                      strokeWidth: 1, // Border width
                       transition: 'fill 0.3s',
                     },
                     hover: {
-                      fill: '#031ac0',
-                      outline: 'none',
+                      fill: '#4485df', // Dark blue on hover
+                      stroke: '#ffffff', // White border on hover
+                      strokeWidth: 1, // Border width on hover
                       cursor: 'pointer',
                     },
                     pressed: {
-                      fill: '#00041d',
-                      outline: 'none',
+                      fill: '#166ded', // Slightly darker blue on press
+                      stroke: '#ffffff', // White border on press
+                      strokeWidth: 1, // Border width on press
                     },
                   }}
                 />
-              );
-            })
-          }
-        </Geographies>
-      </ComposableMap>
+
+              ))
+            }
+          </Geographies>
+        </ComposableMap>
+      </div>
     </div>
   );
 };
 
 export default Map;
+

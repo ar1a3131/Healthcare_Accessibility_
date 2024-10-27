@@ -1,20 +1,72 @@
-/* State.css */
+/* Global Styling */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
 
-/* Container for the entire page */
+.map-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+}
+
+.header-bar {
+    width: 100%;
+    background-color: #619aea !important; /* Matching darker gray from the map page */
+    padding: 25px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeInHeader 1.5s ease-in-out forwards;
+}
+
+.header-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1e1e1f; /* Light blue text */
+    margin: 0;
+}
+
+.description {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    text-align: center;
+    color: #d4e3f8; /* Light blue to match the theme */
+    opacity: 0;
+    animation: fadeInDescription 1.5s 0.5s ease-in-out forwards;
+}
+
+.composable-map-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70vh;
+    animation: fadeInMap 2.5s ease-in-out forwards;
+}
+
+/* State Page Styling */
 .state-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
-    margin-top: 60px;  /* Offset for the fixed header */
-  }
-  
-  /* Header bar at the top of the page */
-  .header-bar {
+    padding: 100px;
+    margin-top: 60px; /* Offset for the fixed header */
+     /* Consistent background color */
+    color: #d4e3f8; /* Light blue for text */
+}
+
+.header-bar {
     width: 100%;
     height: 60px;
-    background-color: #7c8bff;  /* Dark blue color */
+   
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,119 +74,175 @@
     top: 0;
     left: 0;
     z-index: 10;
-  }
-  
-  /* State name in the header bar */
-  .state-name {
+}
+
+.state-name {
     font-size: 2rem;
     font-weight: 700;
-    color: white;
+    color: rgb(234, 239, 255); /* Light blue text */
     margin: 0;
     padding: 0;
-  }
-  
-  /* Dropdown styling */
-  .dropdown {
+}
+
+.dropdown {
     margin: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  
-  .dropdown label {
+}
+
+.dropdown label {
     font-size: 1.2rem;
     margin-bottom: 8px;
-    color: #333;
-  }
-  
-  select {
+    color: #2c2f32; /* Light blue text */
+}
+
+select {
     padding: 10px 15px;
     font-size: 1rem;
     font-family: 'Roboto', sans-serif;
-    border: 1px solid #ccc;
-    border-radius: 8px;  /* Rounded corners */
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
+    border: 1px solid #9EC2F7;
+    border-radius: 8px;
+    background-color: #535364;
+    color: #40414d;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    appearance: none;  /* Remove default arrow */
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-down'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat;
+    appearance: none;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d4e3f8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-down'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat;
     background-position: right 10px center;
     background-size: 1.2em;
-    padding-right: 2em;  /* Adjust padding to make room for the icon */
-  }
-  
-  /* Change background and border color when focused */
-  select:focus {
+    padding-right: 2em;
+}
+
+select:focus {
     outline: none;
-    border: 1px solid #007bff;  /* Blue border on focus */
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-  }
-  
-  /* Add hover effect for dropdown options */
-  option:hover {
-    background-color: #f0f4f8;
-  }
-  
-  /* Organization list container */
-  .org-list {
+    border: 1px solid #9EC2F7; /* Light blue border on focus */
+    box-shadow: 0 0 5px rgba(132, 173, 233, 0.5);
+}
+
+option:hover {
+    background-color: #4a5561;
+}
+
+.org-list {
     width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  
-  /* Organization card styling */
-  .org-card {
+    margin-top: 20px;
+}
+
+.org-card {
     width: 90%;
-    border-top: 2px solid #465bff;  /* Top blue line */
-    border-bottom: 2px solid #465bff;  /* Bottom blue line */
+    border-top: 2px solid #4485df;
+    border-bottom: 2px solid #4485df;
     padding: 20px 0;
     margin: 10px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     transition: all 0.3s;
-    background-color: #fff;
-  }
-  
-  .org-card:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Add shadow on hover */
-  }
-  
-  /* Remove side borders */
-  .org-card {
-    border-left: none;
-    border-right: none;
-  }
-  
-  .org-info {
+    background-color: #9EC2F7;
+    color: #ffffff;
+}
+
+.org-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.org-info {
     text-align: left;
     width: 80%;
-  }
-  
-  .org-logo {
+}
+
+.org-logo {
     width: 100px;
     height: auto;
     margin-left: 10px;
-  }
-  
-  h2 {
+}
+
+h2 {
     margin: 0;
     font-size: 1.5rem;
     font-weight: 700;
-  }
-  
-  p {
+    color: #0c144d;
+}
+
+p {
     margin: 5px 0;
-  }
-  
-  a {
+    color: #0b1459;
+}
+
+a {
     margin-top: 20px;
-    color: blue;
+    color: #9EC2F7;
     text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+@keyframes fadeInHeader {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDescription {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInMap {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* button */
+.back-button {
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #4485df; /* Baby blue color to match the theme */
+    color: white;
+    font-size: 1rem;
+    font-family: 'Helvetica', sans-serif;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
   }
   
-  a:hover {
-    text-decoration: underline;
+  .back-button:hover {
+    background-color: #166ded; /* Darker blue on hover */
   }
+  
+  .back-button:active {
+    transform: scale(0.95); /* Slight shrink effect on click */
+  }
+  
+  .back-button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(132, 173, 233, 0.5); /* Light blue shadow */
+  }
+  

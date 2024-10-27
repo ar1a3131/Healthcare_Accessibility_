@@ -1,46 +1,90 @@
-/* Full-page background color */
+/* Global styling */
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: #e5f2ff;
+    background-color: #a0b9cc;
     font-family: 'Roboto', sans-serif;
 }
 
-/* Main container for the map and text */
 .map-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100%;
+    justify-content: flex-start;
     padding: 0;
     margin: 0;
+    height: 100vh;
 }
 
-/* Full-width header bar */
-.header-container {
+.header-bar {
     width: 100%;
-    background-color: #c2c9ff;  /* Dark blue color */
-    text-align: center;
-    padding: 20px 0;
+    background-color: #d4e3f8 !important;
+    padding: 25px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeInHeader 1.5s ease-in-out forwards;
+    color: rgb(255, 255, 255);
 }
 
-.header-container h1 {
+.header-title {
     font-size: 2.5rem;
     font-weight: 700;
     color: rgb(255, 255, 255);
     margin: 0;
 }
 
-p {
+.description {
+    margin-top: 40px 0;
     font-size: 1.2rem;
-    font-weight: 400;
-    margin-top: 20px;
+    text-align: center;
+    color: rgb(44, 46, 52) !important;
+    opacity: 0; /* Start with hidden */
+    animation: fadeInDescription 1.5s 0.5s ease-in-out forwards; /* Add fade-in animation */
 }
 
-/* Responsive Map */
-.composable-map {
-    max-width: 100%;
-    height: auto;
+.composable-map-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70vh;
+    animation: fadeInMap 2.5s ease-in-out forwards;
 }
+
+@keyframes fadeInHeader {
+    from {
+        opacity: 0;
+        transform: translateY(-20px); /* Slide in from the top */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDescription {
+    from {
+        opacity: 0;
+        transform: translateY(-10px); /* Slight slide in from the top */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInMap {
+    from {
+        opacity: 0;
+        transform: scale(0.95); /* Slight zoom-in effect */
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+  

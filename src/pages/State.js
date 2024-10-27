@@ -1,6 +1,6 @@
 // State.js
 import React, { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import './State.css';
 
 // JSON data representing New Jersey healthcare providers
@@ -187,6 +187,7 @@ const State = () => {
   const { stateName } = useParams();  // Get the state name from URL params
   const [category, setCategory] = useState('');
   const [orgData, setOrgData] = useState([]);  // Organization data
+  const navigate = useNavigate();
 
   const categories = [
     "Mental Health Intervention",
@@ -207,13 +208,21 @@ const State = () => {
     setOrgData(filteredData);
   };
 
+  const handleBackClick = () => {
+    navigate('/');
+  };
+
   return (
     <div className="state-container">
       <div className="header-bar">
         <h1 className="state-name">{stateName}</h1>
       </div>
-      <p>This page displays healthcare information for {stateName}.</p>
+      <p></p>
+      <button className="back-button" onClick={handleBackClick}>
+        Back to Map
+      </button>
 
+<br/>
       <div className="dropdown">
         <label>Select a Category of Care: </label>
         <select value={category} onChange={handleCategoryChange}>
@@ -239,7 +248,11 @@ const State = () => {
                 <p><strong>Website:</strong> <a href={org.Website} target="_blank" rel="noopener noreferrer">{org.Website}</a></p>
                 <p><strong>Travel Difficulty from your Location:</strong> {org.accessibility}</p>
               </div>
-              <img src={`${process.env.PUBLIC_URL}/images/${org.logo_image}`} alt={org.name} className="org-logo" />
+              <img 
+                src={`${process.env.PUBLIC_URL}/rod_logo.jpg`} 
+                alt={org.name} 
+                className="org-logo" 
+              />
             </div>
           ))
         ) : (
@@ -247,9 +260,7 @@ const State = () => {
         )}
       </div>
 
-      <Link to="/" style={{ textDecoration: 'none', color: 'blue' }}>
-        Back to Map
-      </Link>
+    
     </div>
   );
 };
