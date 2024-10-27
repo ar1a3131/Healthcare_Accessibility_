@@ -46,14 +46,6 @@ def calculate_difficulty_index(walk_score, total_distance, bus_stop_distance,
 
     return round(min(difficulty_index, 10), 2)
 
-## Results
-
-    We were able to create a simple application that gives users relevant information that pertains to what is in their area by address entry and conversion. 
-
-### Limitations and Future Functionality
-
-    Because of time constraints, many features that could have been implemented and expanded upon were tabled for later usage if the application proves to be useful for NJ Transit or other organizations that see value in the project. Some other relevant calculations that could have been considered in both what to pass to the user and what to calculate in the difficulty index were traffic at the time of user entry, links to appointment sections of provider sites, transportation costs (and rail systems receiving coordinates and being added to the system, we only worked with bus data for this project), and what insurance the provider takes. This information is also unstructured but has the potential to be structured and placed into a directory for New Jersey, and later other state’s users, to access.
-    Another limitation was the inability to develop a literature review that addresses barriers to users using urban or suburban public transportation due to time constraints. If this research was implemented, the difficulty index could potentially be more accurate and have better weighted values than what the team decided at the time of development. Addressing these literature gaps would be the next step in developing a more comprehensive and useful application for public usage. 
 
 
 
