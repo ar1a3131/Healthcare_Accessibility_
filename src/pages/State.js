@@ -1,6 +1,7 @@
 // State.js
 import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useSelectedState } from './SelectedStateContext';
 import './State.css';
 
 // JSON data representing New Jersey healthcare providers
@@ -188,6 +189,11 @@ const State = () => {
   const [category, setCategory] = useState('');
   const [orgData, setOrgData] = useState([]);  // Organization data
   const navigate = useNavigate();
+  const { setSelectedState } = useSelectedState();
+
+  useState(() => {
+    setSelectedState(stateName);
+  }, [stateName, setSelectedState]);
 
   const categories = [
     "Mental Health Intervention",

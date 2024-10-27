@@ -5,7 +5,8 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import Map from './pages/Map';
 import State from './pages/State';
 import Address from './pages/Address';
-import './App.css';  // Add custom CSS for transitions
+import './App.css'; 
+import { SelectedStateProvider } from './pages/SelectedStateContext'; 
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -17,11 +18,13 @@ const AnimatedRoutes = () => {
         classNames="fade"
         timeout={500}
       >
-        <Routes location={location}>
-          <Route path="/" element={<Map />} />
-          <Route path="/address/:stateName" element={<Address />} />
-          <Route path="/state/:stateName" element={<State />} />
-        </Routes>
+        <SelectedStateProvider>
+          <Routes location={location}>
+            <Route path="/" element={<Map />} />
+            <Route path="/address/:stateName" element={<Address />} />
+            <Route path="/state/:stateName" element={<State />} />
+          </Routes>
+        </SelectedStateProvider>
       </CSSTransition>
     </TransitionGroup>
   );
