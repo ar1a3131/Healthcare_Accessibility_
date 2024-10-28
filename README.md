@@ -4,8 +4,8 @@
 
 ## UI
 ![Homepage](./homepage.png)
-![SecondScreen](./Screenshot 2024-10-27 at 12-42-46 Healthcare Data Directory.png)
-![ThirdScreen](./Screenshot 2024-10-27 at 12-43-19 Healthcare Data Directory.png)
+![SecondScreen](./Screenshot_2024-10-27_at_12-42-46_Healthcare_Data_Directory.png)
+![ThirdScreen](./Screenshot_2024-10-27_at_12-43-19_Healthcare_Data_Directory.png)
 
 ### Abstract
 
