@@ -2,6 +2,11 @@
 
 ## Authors: Allen Mena, Arianna Azizi, Samuel Habib, James Lee 
 
+## UI
+![Homepage](./homepage.png)
+![SecondScreen](./Screenshot 2024-10-27 at 12-42-46 Healthcare Data Directory.png)
+![ThirdScreen](./Screenshot 2024-10-27 at 12-43-19 Healthcare Data Directory.png)
+
 ### Abstract
 
 In New Jersey (and the greater United States), the issue of accessible healthcare provider data that is relevant to patients in these care systems is prevalent, and requires a solution that users can always access in order to obtain information pertinent to receiving care in their area. This currently does not exist on a state or national level, and the provider data currently available on the internet is unstructured at best, and at worst, unavailable without deep searching into provider coalitions and other organizations that try to represent what data they can find into their own directories. However, because this data exists in smaller directories, the goal is to add additional pertinent information that can be accessed by calculations made up of a combination of provider data, and NJ transit route information. This combination of data can lead to new insights as to which patients have the most difficult time getting to providers, and a calculated justification as to why.
